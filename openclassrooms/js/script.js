@@ -1,30 +1,43 @@
 let score = 0;
 
-let choix = prompt(
-  "Avec quelle liste désirez-vous jouer ? 'Mots' ou 'Phrases' ?"
-);
-while (choix !== "Mots" && choix !== "Phrases") {
-  choix = prompt("Veuillez taper votre choix : 'Mots' ou 'Phrases' !");
+function afficherResultat(score, nbTotalMots) {
+  let message = "Votre score est de " + score + " sur " + nbTotalMots; //nbTotaldeMots n'est pas définie.
+  return message;
 }
 
-if (choix === "Mots") {
-  for (let i = 0; i < listeMots.length; i++) {
-    let motUtilisateur = prompt("Entrez le mot : " + listeMots[i]);
+function choisirPhrasesOuMots() {
+  let choix = prompt(
+    "Avec quelle liste désirez-vous jouer ? 'Mots' ou 'Phrases' ?"
+  );
+  while (choix !== "Mots" && choix !== "Phrases") {
+    choix = prompt("Veuillez taper votre choix : 'Mots' ou 'Phrases' !");
+  }
+  return choix;
+}
+
+function lancerBoucleDeJeu(listePropositions) {
+  for (let i = 0; i < listePropositions.length; i++) {
+    let motUtilisateur = prompt("Entrez le mot : " + listePropositions[i]);
     if (motUtilisateur === listeMots[i]) {
       score++;
     }
   }
-  console.log("Votre score s'élève à " + score + " sur " + listeMots.length);
+  return score;
 }
 
-if (choix === "Phrases") {
-  for (let i = 0; i < listePhrases.length; i++) {
-    let phraseUtilisateur = prompt(
-      "Entrez la phrase suivante " + listePhrases[i]
-    );
-    if (phraseUtilisateur === listePhrases[i]) {
-      score++;
-    }
+function lancerJeu() {
+  let choix = choisirPhrasesOuMots();
+  let score = 0;
+  let nbMotsProposes = 0;
+  afficherResultat(score, nbTotalMots);
+  if (choix === 'mots'){
+    lancerBoucleDeJeu(listeMots)
   }
-  console.log("Votre score s'élève à " + score + " sur " + listePhrases.length);
+  else (choix === 'phrases'){
+    lancerBoucleDeJeu(listePhrases)
+  }
+
 }
+
+lancerJeu();
+ 
