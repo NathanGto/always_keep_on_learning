@@ -1,7 +1,7 @@
-let score = 0;
-
-function afficherResultat(score, nbTotalMots) {
-  let message = "Votre score est de " + score + " sur " + nbTotalMots; //nbTotaldeMots n'est pas définie.
+function afficherResultat(score, nbMotsProposes) {
+  message = console.log(
+    "Votre score est de " + score + " sur " + nbMotsProposes
+  ); //nbTotaldeMots n'est pas définie.
   return message;
 }
 
@@ -16,6 +16,7 @@ function choisirPhrasesOuMots() {
 }
 
 function lancerBoucleDeJeu(listePropositions) {
+  let score = 0;
   for (let i = 0; i < listePropositions.length; i++) {
     let motUtilisateur = prompt("Entrez le mot : " + listePropositions[i]);
     if (motUtilisateur === listeMots[i]) {
@@ -29,15 +30,14 @@ function lancerJeu() {
   let choix = choisirPhrasesOuMots();
   let score = 0;
   let nbMotsProposes = 0;
-  afficherResultat(score, nbTotalMots);
-  if (choix === 'mots'){
-    lancerBoucleDeJeu(listeMots)
-  }
-  else (choix === 'phrases'){
-    lancerBoucleDeJeu(listePhrases)
+
+  if (choix === "Mots") {
+    score = lancerBoucleDeJeu(listeMots);
+    nbMotsProposes = listeMots.length;
+  } else {
+    score = lancerBoucleDeJeu(listePhrases);
+    nbMotsProposes = listePhrases.length;
   }
 
+  afficherResultat(score, nbMotsProposes);
 }
-
-lancerJeu();
- 
