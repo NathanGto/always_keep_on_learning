@@ -1,7 +1,7 @@
 function afficherResultat(score, nbMotsProposes) {
   message = console.log(
     "Votre score est de " + score + " sur " + nbMotsProposes
-  ); //nbTotaldeMots n'est pas définie.
+  );
   return message;
 }
 
